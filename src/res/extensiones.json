@@ -1,0 +1,52 @@
+{
+    "Imagen": [
+        ".png",
+        ".jpg",
+        ".jpeg",
+        ".gif",
+        ".bmp",
+        ".tiff",
+        ".svg",
+        ".webp",
+        ".heic",
+        ".raw",
+        ".psd",
+        ".ai",
+        ".indd",
+        ".jfif",
+        ".exr",
+        ".ico",
+        ".jfif"
+    ],
+    "Documento": [
+        ".pdf",
+        ".doc",
+        ".docx",
+        ".txt",
+        ".xls",
+        ".xlsx",
+        ".ppt",
+        ".pptx",
+        ".odt",
+        ".rtf"
+    ],
+    "Video": [
+        ".mp4",
+        ".avi",
+        ".mov",
+        ".wmv",
+        ".flv",
+        ".mkv",
+        ".webm",
+        ".mpeg"
+    ],
+    "Audio": [
+        ".mp3",
+        ".wav",
+        ".aac",
+        ".flac",
+        ".ogg",
+        ".wma",
+        ".m4a"
+    ]
+}
