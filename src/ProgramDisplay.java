@@ -25,31 +25,36 @@ public class ProgramDisplay extends Application {
 
         // Componentes de la interfaz
         Button loadButton = new Button("📂 Cargar directorio");
+        Button moverButton = new Button("-> Mover archivos");
+        Button clearButton = new Button("X Limpiar");
         Button exitButton = new Button("🚪 Salir");
+        
 
         listView = new ListView<>();
         currentDirLabel = new Label("Directorio actual: (ninguno)");
 
         // Layout botones
-        HBox buttonBox = new HBox(10, loadButton, exitButton);
+        VBox buttonBox = new VBox(10, loadButton, moverButton, clearButton, exitButton);
         buttonBox.setPadding(new Insets(10));
 
-        // Layout principal
+        // Layout pantalla directorios
         VBox mainBox = new VBox(10, currentDirLabel, listView);
         mainBox.setPadding(new Insets(10));
 
         BorderPane root = new BorderPane();
-        root.setTop(buttonBox);
+        root.setRight(buttonBox);
         root.setCenter(mainBox);
 
         //Acciones de los botones
         loadButton.setOnAction(e -> chooseAndLoadDirectory(stage));
+        moverButton.setOnAction(e -> new FileMoverDisplay().start(new Stage()));
         exitButton.setOnAction(e -> stage.close());
-
-
+        clearButton.setOnAction(e -> clearDirectoryContents(null));
+        
+        
 
         stage.setTitle("File Sorter");
-        stage.setScene(new Scene(root, 1000, 500));
+        stage.setScene(new Scene(root, 750, 400));
         stage.show();
     }
 
@@ -65,7 +70,7 @@ public class ProgramDisplay extends Application {
     }
 
     private void loadDirectoryContents(File dir) {
-        listView.getItems().clear();
+        clearDirectoryContents(dir);
         File[] files = dir.listFiles();
 
         if (files != null) {
@@ -75,6 +80,15 @@ public class ProgramDisplay extends Application {
             }
         } else {
             listView.getItems().add("(No se pudo leer el directorio)");
+        }
+    }
+
+    private void clearDirectoryContents(File dir) {
+        if (dir != null) {
+            currentDirLabel.setText("Directorio actual: " + dir.getAbsolutePath());
+        } else {
+            listView.getItems().clear();
+            currentDirLabel.setText("Directorio actual: (ninguno)");
         }
     }
 
