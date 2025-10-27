@@ -91,7 +91,8 @@ public class ProgramDisplay extends Application {
             currentDirLabel.setText("Directorio actual: (ninguno)");
         }
     }
-
+    
+    //Ejecuta la display y la muestra
     public static void main(String[] args) {
         launch();
     }

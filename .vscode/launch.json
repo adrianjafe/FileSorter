@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "FileMoverDisplay",
+            "request": "launch",
+            "mainClass": "src.FileMoverDisplay",
+            "projectName": "FileSorter_7d4dd4b3"
+        },
+        {
+            "type": "java",
             "name": "Run Display",
             "request": "launch",
             "mainClass": "src.ProgramDisplay",
