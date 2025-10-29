@@ -1,0 +1,63 @@
+/* Fondo general */
+.root {
+    -fx-background-color: linear-gradient(to bottom right, #f4f7fa, #dbe2ef);
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+/* Label del directorio */
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333;
+    -fx-font-weight: bold;
+}
+
+/* ListView */
+.list-view {
+    -fx-background-color: white;
+    -fx-border-color: #b0bec5;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 8;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 6, 0.3, 2, 2);
+}
+
+/* Botones */
+.button {
+    -fx-background-color: #3f72af;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 4, 0.3, 0, 1);
+}
+
+/* Hover (cuando el ratón pasa encima) */
+.button:hover {
+    -fx-background-color: #2e59a3;
+}
+
+/* Botón de "Salir" (color distinto) */
+.button:focused {
+    -fx-background-color: #2e59a3;
+}
+
+.button:pressed {
+    -fx-background-color: #1b3c73;
+}
+
+.button:last-child {
+    -fx-background-color: #b80c09;
+}
+
+.button:last-child:hover {
+    -fx-background-color: #e01b17;
+}
+
+/* Espaciado del VBox de botones */
+.vbox {
+    -fx-background-color: rgba(255,255,255,0.6);
+    -fx-background-radius: 12;
+    -fx-padding: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 6, 0.3, 2, 2);
+}

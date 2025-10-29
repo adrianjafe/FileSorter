@@ -54,7 +54,10 @@ public class ProgramDisplay extends Application {
         
 
         stage.setTitle("File Sorter");
-        stage.setScene(new Scene(root, 750, 400));
+        Scene scene = new Scene(root, 800, 450);
+        scene.getStylesheets().add(getClass().getResource("Display.css").toExternalForm());
+        stage.setScene(scene);
+
         stage.show();
     }
 
