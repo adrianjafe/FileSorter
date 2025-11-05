@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "FileMoverDisplay",
+            "request": "launch",
+            "mainClass": "src.FileMoverDisplay",
+            "projectName": "FileSorter_7d4dd4b3"
+        },
+        {
+            "type": "java",
+            "name": "Run Display",
+            "request": "launch",
+            "mainClass": "src.ProgramDisplay",
+            "vmArgs": "--module-path \"${workspaceFolder}/libs/javafx-sdk-25.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
+        }
+    ]
+}
