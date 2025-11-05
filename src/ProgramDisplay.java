@@ -19,6 +19,7 @@ public class ProgramDisplay extends Application {
 
     private ListView<String> listView;
     private Label currentDirLabel;
+    private File currentDirectory;
 
     @Override
     public void start(Stage stage){
@@ -47,9 +48,28 @@ public class ProgramDisplay extends Application {
 
         //Acciones de los botones
         loadButton.setOnAction(e -> chooseAndLoadDirectory(stage));
-        moverButton.setOnAction(e -> new FileMoverDisplay().start(new Stage()));
+        moverButton.setOnAction(e -> new FileMoverDisplay().showWindow());
         exitButton.setOnAction(e -> stage.close());
         clearButton.setOnAction(e -> clearDirectoryContents(null));
+
+        //Accion doble clic en la lista para abrir carpetas
+        listView.setOnMouseClicked(event -> {
+            //System.out.println("Click detected");
+            if (event.getClickCount() == 2) { // Doble clic
+                //System.out.println("Double click detected");
+                String selectedItem = listView.getSelectionModel().getSelectedItem();
+                if (selectedItem != null && selectedItem.startsWith("[DIR] ")) {
+                    //System.out.println("Directory selected: " + selectedItem);
+                    //System.out.println("Current directory before change: " + currentDirectory);
+                    String folderName = selectedItem.substring(6); // quitar "[DIR] "
+                    File newDir = new File(currentDirectory, folderName);
+                    if (newDir.isDirectory()) {
+                        clearDirectoryContents(currentDirectory);
+                        loadDirectoryContents(newDir); // cargar la nueva carpeta
+                    }
+                }
+            }
+        });
         
         
 
@@ -61,6 +81,7 @@ public class ProgramDisplay extends Application {
         stage.show();
     }
 
+    //Todo: este metodo puede ir en otra clase
     private void chooseAndLoadDirectory(Stage stage) {
         DirectoryChooser chooser = new DirectoryChooser();
         chooser.setTitle("Selecciona un directorio");
@@ -73,6 +94,7 @@ public class ProgramDisplay extends Application {
     }
 
     private void loadDirectoryContents(File dir) {
+        currentDirectory = dir;
         clearDirectoryContents(dir);
         File[] files = dir.listFiles();
 
@@ -89,7 +111,10 @@ public class ProgramDisplay extends Application {
     private void clearDirectoryContents(File dir) {
         if (dir != null) {
             currentDirLabel.setText("Directorio actual: " + dir.getAbsolutePath());
+            listView.getItems().clear();
+            //System.out.println("Clearing directory contents for: " + dir.getAbsolutePath());
         } else {
+            //System.out.println("Clearing directory contents");
             listView.getItems().clear();
             currentDirLabel.setText("Directorio actual: (ninguno)");
         }
