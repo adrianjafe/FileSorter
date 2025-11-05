@@ -5,6 +5,10 @@ import java.nio.file.Files;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
+
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
+
 import java.io.FileReader;
 
 public class FileScanner {
@@ -39,9 +43,23 @@ public class FileScanner {
         return new File(path);
     }
 
+    public File chooseAndLoadDirectory(Stage stage) {
+        DirectoryChooser chooser = new DirectoryChooser();
+        chooser.setTitle("Selecciona un directorio");
+        File selectedDir = chooser.showDialog(stage);
+
+        if (selectedDir != null) {
+            return selectedDir;
+        }
+        return null;
+    }
+
     // Método para mover archivos a una carpeta de destino
-    public static void moverArchivo(File file, String destino) {
-        File destinoFolder = getFile(destino);
+    public static void moverArchivo(File file, File destino,String destinoStr) {
+        if (destinoStr == null) {
+            destinoStr = destino.getAbsolutePath();
+        }
+        File destinoFolder = getFile(destinoStr);
         if (destinoFolder.exists() == false) {
             destinoFolder.mkdirs();
         }
@@ -60,13 +78,13 @@ public class FileScanner {
     public static void organizarPorTipo(File folder) {
         for (File file : folder.listFiles()) {
             if (isImagen(file)) {
-                moverArchivo(file, "./src/Imagen");
+                moverArchivo(file, null,"./src/Imagen");
             } else if (isAudio(file)) {
-                moverArchivo(file, "./src/Audio");
+                moverArchivo(file, null,"./src/Audio");
             } else if (isVideo(file)) {
-                moverArchivo(file, "./src/Video");
+                moverArchivo(file, null,    "./src/Video");
             } else if (isDocumento(file)) {
-                moverArchivo(file, "./src/Documento");
+                moverArchivo(file, null,"./src/Documento");
                 System.out.println("Documento: " + file.getName() + " movido.");
             }
         }
